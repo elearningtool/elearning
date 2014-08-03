@@ -298,4 +298,16 @@ define('ERROR_FILE_NOT_SAVED', 'Error: File upload not saved.');
 define('ERROR_FILETYPE_NOT_ALLOWED', 'Error: File upload type not allowed.');
 define('SUCCESS_FILE_SAVED_SUCCESSFULLY', 'Success: File upload saved successfully.');
 define('WARNING_NO_FILE_UPLOADED', 'Warning: No file uploaded.');
+
+// box menu heading icons - coding for displaying boxes sort by alphabetical order, so figure the icon desired by that.
+define('BOX_HEADING_ICON_1', 'folder-open');
+define('BOX_HEADING_ICON_2', 'cog');
+define('BOX_HEADING_ICON_3', 'user');
+define('BOX_HEADING_ICON_4', 'briefcase');
+define('BOX_HEADING_ICON_5', 'globe');
+define('BOX_HEADING_ICON_6', 'tasks');
+define('BOX_HEADING_ICON_7', 'inbox');
+define('BOX_HEADING_ICON_8', 'stats');
+define('BOX_HEADING_ICON_9', 'wrench');
+
 ?>

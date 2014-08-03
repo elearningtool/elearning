@@ -9,18 +9,28 @@
 
   Released under the GNU General Public License
 */
-
-  if ($messageStack->size > 0) {
-    echo $messageStack->output();
-  }
 ?>
-
-<table border="0" width="100%" cellspacing="0" cellpadding="0">
-  <tr>
-    <td colspan="2"><?php echo '<a href="' . tep_href_link(FILENAME_DEFAULT) . '">' . tep_image(DIR_WS_IMAGES . 'oscommerce.png', 'osCommerce Online Merchant v' . tep_get_version()) . '</a>'; ?></td>
-  </tr>
-  <tr class="headerBar">
-    <td class="headerBarContent">&nbsp;&nbsp;<?php echo '<a href="' . tep_href_link(FILENAME_DEFAULT) . '" class="headerLink">' . HEADER_TITLE_ADMINISTRATION . '</a> &nbsp;|&nbsp; <a href="' . tep_catalog_href_link() . '" class="headerLink">' . HEADER_TITLE_ONLINE_CATALOG . '</a> &nbsp;|&nbsp; <a href="http://www.oscommerce.com" class="headerLink">' . HEADER_TITLE_SUPPORT_SITE . '</a>'; ?></td>
-    <td class="headerBarContent" align="right"><?php echo (tep_session_is_registered('admin') ? 'Logged in as: ' . $admin['username']  . ' (<a href="' . tep_href_link(FILENAME_LOGIN, 'action=logoff') . '" class="headerLink">Logoff</a>)' : ''); ?>&nbsp;&nbsp;</td>
-  </tr>
-</table>
+    <div class="navbar navbar-osc navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+<?php
+  echo '          <a class="navbar-brand" href="' . tep_href_link(FILENAME_DEFAULT) . '">' . tep_image(DIR_WS_IMAGES . 'oscommerce.png', 'osCommerce Online Merchant v' . tep_get_version()) . '</a>';
+?> 
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><?php echo '<a href="' . tep_href_link(FILENAME_DEFAULT) . '">' . HEADER_TITLE_ADMINISTRATION . '</a>'; ?></li>
+            <li><?php echo '<a href="' . tep_catalog_href_link() . '" target="_blank">' . HEADER_TITLE_ONLINE_CATALOG . '</a>'; ?></li>
+            <li><?php echo '<a href="http://www.oscommerce.com" target="_blank">' . HEADER_TITLE_SUPPORT_SITE . '</a>'; ?></li>
+            <li><?php echo (tep_session_is_registered('admin') ? '<a href="' . tep_href_link(FILENAME_LOGIN, 'action=logoff') . '">Logoff ' . $admin['username'] . '</a>' : ''); ?></li>
+          </ul>
+        </div>
+      </div>
+    </div><!--navbar header-->
+    

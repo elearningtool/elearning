@@ -134,56 +134,47 @@
   require(DIR_WS_INCLUDES . 'template_top.php');
 ?>
 
-<table border="0" width="100%" cellspacing="2" cellpadding="2">
-  <tr>
-    <td><table border="0" width="100%" cellspacing="0" cellpadding="0" height="40">
-      <tr>
-        <td class="pageHeading"><?php echo HEADING_TITLE; ?></td>
+
 
 <?php
   if (sizeof($languages_array) > 1) {
 ?>
 
-        <td class="pageHeading" align="right"><?php echo tep_draw_form('adminlanguage', FILENAME_DEFAULT, '', 'get') . tep_draw_pull_down_menu('language', $languages_array, $languages_selected, 'onchange="this.form.submit();"') . tep_hide_session_id() . '</form>'; ?></td>
+        <?php echo tep_draw_form('adminlanguage', FILENAME_DEFAULT, '', 'get') . tep_draw_pull_down_menu('language', $languages_array, $languages_selected, 'onchange="this.form.submit();"') . tep_hide_session_id() . '</form>'; ?>
 
 <?php
   }
 ?>
 
-      </tr>
-    </table></td>
-  </tr>
-  <tr>
-    <td>
+  <div id="login" class="container-fluid" style="margin-top:12%">
+    <div class="page-header">
+      <h1 class="col-md-8" style="padding-top:0"><?php echo HEADING_TITLE; ?></h1>
 
 <?php
-  $heading = array();
-  $contents = array();
-
-  if (tep_db_num_rows($admins_check_query) > 0) {
-    $heading[] = array('text' => '<strong>' . HEADING_TITLE . '</strong>');
-
-    $contents = array('form' => tep_draw_form('login', FILENAME_LOGIN, 'action=process'));
-    $contents[] = array('text' => TEXT_USERNAME . '<br />' . tep_draw_input_field('username'));
-    $contents[] = array('text' => '<br />' . TEXT_PASSWORD . '<br />' . tep_draw_password_field('password'));
-    $contents[] = array('align' => 'center', 'text' => '<br />' . tep_draw_button(BUTTON_LOGIN, 'key'));
-  } else {
-    $heading[] = array('text' => '<strong>' . HEADING_TITLE . '</strong>');
-
-    $contents = array('form' => tep_draw_form('login', FILENAME_LOGIN, 'action=create'));
-    $contents[] = array('text' => TEXT_CREATE_FIRST_ADMINISTRATOR);
-    $contents[] = array('text' => '<br />' . TEXT_USERNAME . '<br />' . tep_draw_input_field('username'));
-    $contents[] = array('text' => '<br />' . TEXT_PASSWORD . '<br />' . tep_draw_password_field('password'));
-    $contents[] = array('align' => 'center', 'text' => '<br />' . tep_draw_button(BUTTON_CREATE_ADMINISTRATOR, 'key'));
-  }
-
-  $box = new box;
-  echo $box->infoBox($heading, $contents);
+  if (sizeof($languages_array) > 1) {
 ?>
 
-    </td>
-  </tr>
-</table>
+        <div class="col-md-4"><?php echo tep_draw_form('adminlanguage', FILENAME_DEFAULT) . tep_draw_pull_down_menu('language', $languages_array, $languages_selected, 'onchange="this.form.submit();"') . tep_hide_session_id() . '</form>'; ?></div>
+
+<?php
+  }
+?>
+      <div class="clearfix"></div>
+    </div>
+    <?php echo tep_draw_form('login', FILENAME_LOGIN, ((tep_db_num_rows($admins_check_query) > 0) ? 'action=process' : 'action=create')); ?>
+
+      <div class="form-group">
+        <?php echo tep_draw_input_field('username', NULL, 'autofocus="autofocus" placeholder="' . TEXT_USERNAME . '"'); ?>
+      </div>
+        
+      <div class="input-group">
+        <?php echo tep_draw_password_field('password', NULL, 'placeholder="' . TEXT_PASSWORD . '"'); ?>
+        <span class="input-group-btn">
+          <?php echo tep_draw_bs_button(((tep_db_num_rows($admins_check_query) > 0) ? BUTTON_LOGIN : BUTTON_CREATE_ADMINISTRATOR), 'log-in', null, null, null, null, ''); ?>
+        </span>
+      </div>
+    </form>
+  </div>
 
 <?php
   require(DIR_WS_INCLUDES . 'template_bottom.php');

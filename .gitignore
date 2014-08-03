@@ -2,3 +2,11 @@ catalog/includes/local/configure.php
 catalog/admin/includes/local/configure.php
 catalog/includes/work/*
 catalog/admin/images/graphs/*.png
+*.xml
+catalog/admin/help.php
+catalog/admin/why.php
+
+
+catalog/admin/.htaccess
+
+catalog/admin/includes/configure.php

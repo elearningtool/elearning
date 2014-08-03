@@ -786,7 +786,7 @@
       set_time_limit($limit);
     }
   }
-
+/*
 ////
 // Alias function for Store configuration values in the Administration Tool
   function tep_cfg_select_option($select_array, $key_value, $key = '') {
@@ -805,6 +805,46 @@
     return $string;
   }
 
+////
+// Alias function for Store configuration values in the Administration Tool
+//redone to allow some bootstrapping features
+  function tep_cfg_select_option($select_array, $key_value, $key = '') {
+    
+    for ($i=0, $n=sizeof($select_array); $i<$n; $i++) {
+      $name = ((tep_not_null($key)) ? 'configuration[' . $key . ']' : 'configuration_value');
+
+      $radio .= '<input type="radio" id="' . $name . $i .'" name="' . $name . '" value="' . $select_array[$i] . '"';
+
+      if ($key_value == $select_array[$i]) $string .= ' checked="checked"';
+
+      $radio .= ' /><label for="' . $name . $i . '"  onClick="">' . $select_array[$i] . '</label>';
+    }
+	$string = '';
+	$string .= '<div class="switch-toggle switch-android col-md-'. $n++ .'">';
+	$string .= $radio;
+	$string .= '<a></a>';
+    $string .= '</div>';
+    return $string;
+  }
+ */
+////
+// Alias function for Store configuration values in the Administration Tool
+  function tep_cfg_select_option($select_array, $key_value, $key = '') {
+    $string = '';
+
+    for ($i=0, $n=sizeof($select_array); $i<$n; $i++) {
+      $name = ((tep_not_null($key)) ? 'configuration[' . $key . ']' : 'configuration_value');
+
+      $string .= '<label class="radio-inline"><input type="radio" id="' . $name . $i .'" name="' . $name . '" value="' . $select_array[$i] . '"';
+
+      if ($key_value == $select_array[$i]) $string .= ' checked="checked"';
+
+      $string .= ' /> ' . $select_array[$i];
+	  $string .= '</label>';
+    }
+
+    return $string;
+  }
 ////
 // Alias function for module configuration keys
   function tep_mod_select_option($select_array, $key_name, $key_value) {

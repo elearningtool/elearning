@@ -53,7 +53,7 @@
       $chart_label_link = tep_href_link(FILENAME_ORDERS);
 
       $output = <<<EOD
-<div id="d_total_revenue" style="width: 100%; height: 150px;"></div>
+<div id="d_total_revenue" class="col-md-12" style="height: 150px;"></div>
 <script type="text/javascript">
 $(function () {
   var plot30 = [$js_array];

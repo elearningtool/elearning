@@ -9,7 +9,6 @@
 
   Released under the GNU General Public License
 */
-
   require('includes/application_top.php');
 
   $languages = tep_get_languages();
@@ -25,28 +24,19 @@
 
   require(DIR_WS_INCLUDES . 'template_top.php');
 ?>
-
-    <table border="0" width="100%" cellspacing="0" cellpadding="2">
-      <tr>
-        <td><table border="0" width="100%" cellspacing="0" cellpadding="2" height="40">
-          <tr>
-            <td class="pageHeading"><?php echo STORE_NAME; ?></td>
-
+          <div class="page-header">
+            <h1 class="col-md-9"><?php echo STORE_NAME; ?></h1>
 <?php
   if (sizeof($languages_array) > 1) {
 ?>
-
-            <td class="pageHeading" align="right"><?php echo tep_draw_form('adminlanguage', FILENAME_DEFAULT, '', 'get') . tep_draw_pull_down_menu('language', $languages_array, $languages_selected, 'onchange="this.form.submit();"') . tep_hide_session_id() . '</form>'; ?></td>
-
+            <div class="col-md-3 text-right"><?php echo tep_draw_form('adminlanguage', FILENAME_DEFAULT, '', 'get') . tep_draw_pull_down_menu('language', $languages_array, $languages_selected, 'onchange="this.form.submit();"') . tep_hide_session_id() . '</form>'; ?></div>
 <?php
   }
 ?>
+            <div class="clearfix"></div>
+          </div>
 
-          </tr>
-        </table></td>
-      </tr>
-      <tr>
-        <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
+          <div id="dashboard"> 
 <?php
   if ( defined('MODULE_ADMIN_DASHBOARD_INSTALLED') && tep_not_null(MODULE_ADMIN_DASHBOARD_INSTALLED) ) {
     $adm_array = explode(';', MODULE_ADMIN_DASHBOARD_INSTALLED);
@@ -67,38 +57,35 @@
 
       if ( $ad->isEnabled() ) {
         if ($col < 1) {
-          echo '          <tr>' . "\n";
+          echo '            <div class="row" style="padding-bottom:8px;">' . "\n";
         }
 
         $col++;
 
         if ($col <= 2) {
-          echo '            <td width="50%" valign="top">' . "\n";
+          echo '              <div class="col-md-6">' . "\n";
         }
 
         echo $ad->getOutput();
 
         if ($col <= 2) {
-          echo '            </td>' . "\n";
+          echo '              </div>' . "\n";
         }
 
         if ( !isset($adm_array[$i+1]) || ($col == 2) ) {
           if ( !isset($adm_array[$i+1]) && ($col == 1) ) {
-            echo '            <td width="50%" valign="top">&nbsp;</td>' . "\n";
+            echo '              <div class="clearfix"></div>' . "\n";
           }
 
           $col = 0;
 
-          echo '  </tr>' . "\n";
+          echo '            </div>' . "\n";
         }
       }
     }
   }
 ?>
-        </table></td>
-      </tr>
-    </table>
-
+          </div><!--#dashboard-->
 <?php
   require(DIR_WS_INCLUDES . 'template_bottom.php');
   require(DIR_WS_INCLUDES . 'application_bottom.php');

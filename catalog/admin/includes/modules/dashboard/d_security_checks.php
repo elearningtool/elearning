@@ -67,37 +67,37 @@
       }
 
       if (isset($secCheck_messages['error'])) {
-        $output .= '<div class="secError">';
+        $output .= '<div class="alert-message alert-message-danger">';
 
         foreach ($secCheck_messages['error'] as $error) {
-          $output .= '<p class="smallText">' . $error . '</p>';
+          $output .= '<p class="small">' . $error . '</p>';
         }
 
         $output .= '</div>';
       }
 
       if (isset($secCheck_messages['warning'])) {
-        $output .= '<div class="secWarning">';
+        $output .= '<div class="alert-message alert-message-warning">';
 
         foreach ($secCheck_messages['warning'] as $warning) {
-          $output .= '<p class="smallText">' . $warning . '</p>';
+          $output .= '<p class="small">' . $warning . '</p>';
         }
 
         $output .= '</div>';
       }
 
       if (isset($secCheck_messages['info'])) {
-        $output .= '<div class="secInfo">';
+        $output .= '<div class="alert-message alert-message-info">';
 
         foreach ($secCheck_messages['info'] as $info) {
-          $output .= '<p class="smallText">' . $info . '</p>';
+          $output .= '<p class="small">' . $info . '</p>';
         }
 
         $output .= '</div>';
       }
 
       if (empty($secCheck_messages)) {
-        $output .= '<div class="secSuccess"><p class="smallText">' . MODULE_ADMIN_DASHBOARD_SECURITY_CHECKS_SUCCESS . '</p></div>';
+        $output .= '<div class="alert-message alert-message-success"><p class="small">' . MODULE_ADMIN_DASHBOARD_SECURITY_CHECKS_SUCCESS . '</p></div>';
       }
 
       return $output;

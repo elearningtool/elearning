@@ -39,21 +39,23 @@
       $output = null;
 
       if (is_array($result) && !empty($result)) {
-        $output = '<table border="0" width="100%" cellspacing="0" cellpadding="4">' .
-                  '  <tr class="dataTableHeadingRow">' .
-                  '    <td class="dataTableHeadingContent">' . MODULE_ADMIN_DASHBOARD_PARTNER_NEWS_TITLE . '</td>' .
-                  '  </tr>';
+        $output = '<div class="panel panel-default">' .
+	              '  <table class="table table-hover">' .
+                  '    <tr class="heading-row">' .
+                  '      <th>' . MODULE_ADMIN_DASHBOARD_PARTNER_NEWS_TITLE . '</th>' .
+                  '    </tr>';
 
         foreach ($result as $p) {
-          $output .= '  <tr class="dataTableRow" onmouseover="rowOverEffect(this);" onmouseout="rowOutEffect(this);">' .
-                     '    <td class="dataTableContent"><a href="' . $p['url'] . '" target="_blank"><strong>' . $p['title'] . '</strong></a> (' . $p['category_title'] . ')<br />' . $p['status_update'] . '</td>' .
-                     '  </tr>';
+          $output .= '    <tr>' .
+                     '      <td><a href="' . $p['url'] . '" target="_blank"><strong>' . $p['title'] . '</strong></a> (' . $p['category_title'] . ')<br />' . $p['status_update'] . '</td>' .
+                     '    </tr>';
         }
 
-        $output .= '  <tr class="dataTableRow">' .
-                   '    <td class="dataTableContent" align="right" colspan="2"><a href="http://www.oscommerce.com/Services" target="_blank">' . MODULE_ADMIN_DASHBOARD_PARTNER_NEWS_MORE_TITLE . '</a></td>' .
-                   '  </tr>' .
-                   '</table>';
+        $output .= '    <tr>' .
+                   '      <td class="text-right" colspan="2"><a href="http://www.oscommerce.com/Services" target="_blank">' . MODULE_ADMIN_DASHBOARD_PARTNER_NEWS_MORE_TITLE . '</a></td>' .
+                   '    </tr>' .
+                   '  </table>' .
+				   '</div>';
       }
 
       return $output;

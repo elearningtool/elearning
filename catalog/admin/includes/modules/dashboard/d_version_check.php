@@ -49,23 +49,25 @@
         $date_last_checked = MODULE_ADMIN_DASHBOARD_VERSION_CHECK_NEVER;
       }
 
-      $output = '<table border="0" width="100%" cellspacing="0" cellpadding="4">' .
-                '  <tr class="dataTableHeadingRow">' .
-                '    <td class="dataTableHeadingContent">' . MODULE_ADMIN_DASHBOARD_VERSION_CHECK_TITLE . '</td>' .
-                '    <td class="dataTableHeadingContent" align="right">' . MODULE_ADMIN_DASHBOARD_VERSION_CHECK_DATE . '</td>' .
-                '  </tr>';
+      $output = '<div class="panel panel-default">' .
+	            '  <table class="table">' .
+                '    <tr class="heading-row">' .
+                '      <th class="col-md-8">' . MODULE_ADMIN_DASHBOARD_VERSION_CHECK_TITLE . '</th>' .
+                '      <th class="col-md-4 text-right">' . MODULE_ADMIN_DASHBOARD_VERSION_CHECK_DATE . '</th>' .
+                '    </tr>';
 
       if ($new_version == true) {
-        $output .= '  <tr>' .
-                   '    <td class="messageStackWarning" colspan="2">' . tep_image(DIR_WS_ICONS . 'warning.gif', ICON_WARNING) . '&nbsp;<strong>' . MODULE_ADMIN_DASHBOARD_VERSION_CHECK_UPDATE_AVAILABLE . '</strong></td>' .
-                   '  </tr>';
+        $output .= '    <tr class="danger">' .
+                   '      <td colspan="2" class="text-danger">' . tep_glyphicon('warning-sign') . MODULE_ADMIN_DASHBOARD_VERSION_CHECK_UPDATE_AVAILABLE . '</td>' .
+                   '    </tr>';
       }
 
-      $output .= '  <tr class="dataTableRow" onmouseover="rowOverEffect(this);" onmouseout="rowOutEffect(this);">' .
-                 '    <td class="dataTableContent"><a href="' . tep_href_link(FILENAME_VERSION_CHECK) . '">' . MODULE_ADMIN_DASHBOARD_VERSION_CHECK_CHECK_NOW . '</a></td>' .
-                 '    <td class="dataTableContent" align="right">' . $date_last_checked . '</td>' .
-                 '  </tr>' .
-                 '</table>';
+      $output .= '    <tr>' .
+                 '      <td class="col-md-8"><a href="' . tep_href_link(FILENAME_VERSION_CHECK) . '">' . MODULE_ADMIN_DASHBOARD_VERSION_CHECK_CHECK_NOW . '</a></td>' .
+                 '      <td class="col-md-4 text-right">' . $date_last_checked . '</td>' .
+                 '    </tr>' .
+                 '  </table>' . 
+				 '</div>';
 
       return $output;
     }
