@@ -10,3 +10,7 @@ catalog/admin/why.php
 catalog/admin/.htaccess
 
 catalog/admin/includes/configure.php
+
+catalog/admin/.htaccess
+
+catalog/includes/configure.php
