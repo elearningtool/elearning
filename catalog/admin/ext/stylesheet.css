@@ -11,45 +11,7 @@
 
 /* miscellaneous */
 
-/* new messageStack styles */
-.secInfo, .secSuccess, .secWarning, .secError {
-	border: 1px solid;
-	margin: 10px 0px;
-	padding: 5px 10px 5px 50px;
-	background-repeat: no-repeat;
-	background-position: 10px center;
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-}
-.secInfo {
-	border-color: #00529B;
-	background-image: url('../images/ms_info.png');
-	background: url('../images/ms_info.png') no-repeat 10px center, url('../images/ms_info_bg.png') repeat-x; /* css3 multiple backgrounds */
-	background-color: #BDE5F8;
-}
-.secSuccess {
-	border-color: #4F8A10;
-	background-image: url('../images/ms_success.png');
-	background: url('../images/ms_success.png') no-repeat 10px center, url('../images/ms_success_bg.png') repeat-x; /* css3 multiple backgrounds */
-	background-color: #DFF2BF;
-}
-.secWarning {
-	border-color: #9F6000;
-	background-color: #FEEFB3;
-	background-image: url('../images/ms_warning.png');
-	background: url('../images/ms_warning.png') no-repeat 10px center, url('../images/ms_warning_bg.png') repeat-x; /* css3 multiple backgrounds */
-	background-color: #FEEFB3;
-}
-.secError {
-	border-color: #D8000C;
-	background-image: url('../images/ms_error.png');
-	background: url('../images/ms_error.png') no-repeat 10px center, url('../images/ms_error_bg.png') repeat-x; /* css3 multiple backgrounds */
-	background-color: #FFBABA;
-}
-.secInfo p, .secSuccess p, .secWarning p, .secError p {
-	padding: 2px;
-}
+
 /* Custom jQuery UI */
 .ui-dialog {
 	min-width: 500px;
@@ -735,9 +697,9 @@ td .label {
 	box-shadow: 0 1px 0 #fff;
 }
 /* ##############################################################################
-# Alerts                                                                        #
+# Alerts   messageStack and secInfo                                            #
 # #############################################################################*/
-.alert-message {
+.alert-message, .secInfo, .secSuccess, .secWarning, .secError {
 	margin: 20px 0;
 	padding: 20px;
 	border-left: 3px solid #eee;
@@ -749,34 +711,30 @@ td .label {
 	margin-top: 0;
 	margin-bottom: 5px;
 }
-.alert-message p:last-child {
+.alert-message p:last-child, .secInfo p:last-child, .secSuccess p:last-child, .secWarning p:last-child, .secError p:last-child  {
 	margin-bottom: 0;
 }
-.alert-message code {
-	background-color: #fff;
-	border-radius: 3px;
-}
-.alert-message-success {
+.alert-message-success, .secSuccess {
 	border-color: #3C763D;
 	background-image: -webkit-linear-gradient(top, #dff0d8 0%, #c8e5bc 100%);
 	background-image: linear-gradient(to bottom, #dff0d8 0%, #c8e5bc 100%);
- filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffdff0d8', endColorstr='#ffc8e5bc', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffdff0d8', endColorstr='#ffc8e5bc', GradientType=0);
 	background-repeat: repeat-x;
 }
-.alert-message-success h2, .alert-message-success h3, .alert-message-success h4, .alert-message-success strong {
+.alert-message-success h2, .alert-message-success h3, .alert-message-success h4, .alert-message-success strong, .secSuccess strong {
 	color: #3C763D !important;
 }
-.alert-message-danger {
+.alert-message-danger, .secError {
 	border-color: #d9534f;
 	background-image: -webkit-linear-gradient(top, #f2dede 0%, #e7c3c3 100%);
 	background-image: linear-gradient(to bottom, #f2dede 0%, #e7c3c3 100%);
  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff2dede', endColorstr='#ffe7c3c3', GradientType=0);
 	background-repeat: repeat-x;
 }
-.alert-message-danger h2, .alert-message-danger h3, .alert-message-danger h4, .alert-message-danger strong {
+.alert-message-danger h2, .alert-message-danger h3, .alert-message-danger h4, .alert-message-danger strong, .secError strong {
 	color: #d9534f !important;
 }
-.alert-message-warning {
+.alert-message-warning, .secWarning {
 	background-color: #fcf8f2;
 	border-color: #f0ad4e;
 	background-image: -webkit-linear-gradient(top, #fcf8e3 0%, #f8efc0 100%);
@@ -784,17 +742,17 @@ td .label {
  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffcf8e3', endColorstr='#fff8efc0', GradientType=0);
 	background-repeat: repeat-x;
 }
-.alert-message-warning h2, .alert-message-warning h3, .alert-message-warning h4, .alert-message-warning strong {
+.alert-message-warning h2, .alert-message-warning h3, .alert-message-warning h4, .alert-message-warning strong, .secWarning strong {
 	color: #DD9837 !important;
 }
-.alert-message-info {
+.alert-message-info, .secInfo {
 	border-color: #5bc0de;
 	background-image: -webkit-linear-gradient(top, #d9edf7 0%, #b9def0 100%);
 	background-image: linear-gradient(to bottom, #d9edf7 0%, #b9def0 100%);
  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd9edf7', endColorstr='#ffb9def0', GradientType=0);
 	background-repeat: repeat-x;
 }
-.alert-message-info h2, .alert-message-info h3, .alert-message-info h4, .alert-message-info strong {
+.alert-message-info h2, .alert-message-info h3, .alert-message-info h4, .alert-message-info strong, .secInfo strong {
 	color: #5bc0de !important;
 }
 .alert-message-default {
@@ -815,20 +773,6 @@ td .label {
 	color: #444 !important;
 }
 /* ##############################################################################
-# Address Layouts                                                               #
-# #############################################################################*/
-.address-block .h4 {
-	border-bottom: 1px solid #eee;
-	display: block;
-}
-.address-block .h4.text-danger {
-	color: #d9534f !important;
-}
-.address-block address {
-	margin-bottom: 0;
-	height: 126px;
-}
-/* ##############################################################################
 # Pagination                                                                    #
 # #############################################################################*/
 #pg-group .dropdown-menu {
@@ -838,30 +782,6 @@ td .label {
 }
 .pg-rgt {
 	border-left: none;
-}
-/* ##############################################################################
-# Misc Effects and styles                                                       #
-# #############################################################################*/
-.rnd {
-	height: 28px;
-	width: 28px;
-	display: inline-block;
-	text-align: center;
-	border: 1px solid rgba(209, 213, 213, .75);
-	background: rgb(249,252,247);
-	-webkit-border-radius: 200px;
-	border-radius: 200px;
-	-moz-border-radius: 200px;
-	box-shadow: 0 1px 0 #fff;
-	-webkit-box-shadow: 0 1px 0 #fff;
-}
-.rnd i {
-	font-size: 110%;
-	font-style: normal;
-	margin-top: 2px;
-}
-.rnd .glyphicon {
-	margin-top: 3.5px;
 }
 /* ##############################################################################
 # Login  Page                                                                   #
@@ -878,7 +798,7 @@ td .label {
 	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 1) inset;
 	box-shadow: 0 1px 0 rgba(255, 255, 255, 1) inset;
 }
-#login legend, #login .btn {
+   #login .btn {
 	color: #6c6c6c;
 	text-shadow: #fff 0 1px 0;
 }
@@ -888,23 +808,6 @@ td .label {
 	background: rgb(251, 253, 249);
 	-webkit-box-shadow: 0 1px 0 #fff;
 	box-shadow: 0 1px 0 #fff;
-}
-/* ##############################################################################
-# Shipping and Payment pages                                                    #
-# #############################################################################*/
-#shipping-quotes .panel-default, #payment-select .panel-default {
-	padding: 1px 0;
-	border: 1px solid #eee;
-	background-color: #fff;
-	box-shadow: 0 1px 0 #F5F5F5 inset;
-}
-#shipping-quotes .panel-default > .panel-body, #payment-select .panel-default > .panel-body {
-	border: 1px solid transparent;
-	margin-top: 0;
-}
-#shipping-quotes .panel-default > .panel-heading, #payment-select .panel-default > .panel-heading {
-	border: none;
-	border-bottom: 1px solid #eee;
 }
 /* ##############################################################################
 # Bootsrap Glyphicon helpers <--Thank you Font Awesome -->                      #

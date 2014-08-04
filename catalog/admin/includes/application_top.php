@@ -193,6 +193,7 @@
   require(DIR_WS_CLASSES . 'box.php');
 
 // initialize the message stack for output messages
+  require(DIR_WS_CLASSES . 'alertbox.php');
   require(DIR_WS_CLASSES . 'message_stack.php');
   $messageStack = new messageStack;
 

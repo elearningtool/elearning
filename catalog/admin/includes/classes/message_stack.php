@@ -17,7 +17,7 @@
   if ($messageStack->size > 0) echo $messageStack->output();
 */
 
-  class messageStack extends tableBlock {
+  class messageStack extends alertBlock {
     var $size = 0;
 
     function messageStack() {
@@ -35,13 +35,13 @@
 
     function add($message, $type = 'error') {
       if ($type == 'error') {
-        $this->errors[] = array('params' => 'class="messageStackError"', 'text' => tep_image(DIR_WS_ICONS . 'error.gif', ICON_ERROR) . '&nbsp;' . $message);
+        $this->errors[] = array('params' => 'class="alert-message alert-message-danger"', 'text' => tep_glyphicon('flash glyphicon-lg', 'danger') . $message);
       } elseif ($type == 'warning') {
-        $this->errors[] = array('params' => 'class="messageStackWarning"', 'text' => tep_image(DIR_WS_ICONS . 'warning.gif', ICON_WARNING) . '&nbsp;' . $message);
+        $this->errors[] = array('params' => 'class="alert-message alert-message-warning"', 'text' => tep_glyphicon('warning-sign glyphicon-lg', 'warning') . $message);
       } elseif ($type == 'success') {
-        $this->errors[] = array('params' => 'class="messageStackSuccess"', 'text' => tep_image(DIR_WS_ICONS . 'success.gif', ICON_SUCCESS) . '&nbsp;' . $message);
+        $this->errors[] = array('params' => 'class="alert-message alert-message-success"', 'text' => tep_glyphicon('ok glyphicon-lg', 'success') . $message);
       } else {
-        $this->errors[] = array('params' => 'class="messageStackError"', 'text' => $message);
+        $this->errors[] = array('params' => 'class="alert-message alert-message-danger"', 'text' => $message);
       }
 
       $this->size++;
@@ -64,8 +64,7 @@
     }
 
     function output() {
-      $this->table_data_parameters = 'class="messageBox"';
-      return $this->tableBlock($this->errors);
+      return $this->alertBlock($this->errors);
     }
   }
 ?>
