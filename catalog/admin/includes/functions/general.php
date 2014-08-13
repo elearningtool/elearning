@@ -829,6 +829,7 @@
  */
 ////
 // Alias function for Store configuration values in the Administration Tool
+// add classes and labels for bootstrap, plus an id that incriments by a numeric value
   function tep_cfg_select_option($select_array, $key_value, $key = '') {
     $string = '';
 

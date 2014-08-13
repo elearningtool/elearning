@@ -292,6 +292,9 @@ define('TEXT_CACHE_ALSO_PURCHASED', 'Also Purchased Module');
 define('TEXT_NONE', '--none--');
 define('TEXT_TOP', 'Top');
 
+define('TEXT_BROWSE', 'Browse');
+define('TEXT_BROWSE_DONE', 'Upload Ready');
+
 define('ERROR_DESTINATION_DOES_NOT_EXIST', 'Error: Destination does not exist.');
 define('ERROR_DESTINATION_NOT_WRITEABLE', 'Error: Destination not writeable.');
 define('ERROR_FILE_NOT_SAVED', 'Error: File upload not saved.');

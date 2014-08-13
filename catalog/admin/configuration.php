@@ -44,9 +44,9 @@
             <table class="table table-hover table-condensed table-striped">
               <thead>
                 <tr class="heading-row">
-                  <th class="col-md-6"><?php echo TABLE_HEADING_CONFIGURATION_TITLE; ?></th>
-                  <th class="col-md-4"><?php echo TABLE_HEADING_CONFIGURATION_VALUE; ?></th>
-                  <th class="col-md-2 text-right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</th>
+                  <th><?php echo TABLE_HEADING_CONFIGURATION_TITLE; ?></th>
+                  <th><?php echo TABLE_HEADING_CONFIGURATION_VALUE; ?></th>
+                  <th class="text-right"><?php echo TABLE_HEADING_ACTION; ?>&nbsp;</th>
                 </tr>
               </thead>
               <tbody>
@@ -84,15 +84,14 @@
       echo '                <tr onclick="document.location.href=\'' . tep_href_link(FILENAME_CONFIGURATION, 'gID=' . $HTTP_GET_VARS['gID'] . '&cID=' . $configuration['configuration_id']) . '\'">' . "\n";
     }
 ?>
-                  <td class="col-md-6"><?php echo $configuration['configuration_title']; ?></td>
-                  <td class="col-md-4"><?php echo htmlspecialchars($cfgValue); ?></td>
-                  <td class="col-md-2 text-right">
-                    <div class="btn-toolbar pull-right" role="toolbar" style="margin: 0;">
-                      <div class="btn-group btn-group-xs">
+                  <td><?php echo $configuration['configuration_title']; ?></td>
+                  <td><?php echo htmlspecialchars($cfgValue); ?></td>
+                  <td class="text-right">
+                    <div class="btn-toolbar" role="toolbar">                   
 <?php
-            echo tep_glyphicon_button(IMAGE_ICON_INFO, 'info-sign', tep_href_link(FILENAME_CONFIGURATION, 'gID=' . $HTTP_GET_VARS['gID'] . '&cID=' . $configuration['configuration_id'] . '&action=info'), null, 'info', null, null, null, false) . '</div><div class="btn-group btn-group-xs">' . 
-			  tep_glyphicon_button(IMAGE_EDIT, 'pencil', tep_href_link(FILENAME_CONFIGURATION, 'gID=' . $HTTP_GET_VARS['gID'] . '&cID=' . $configuration['configuration_id'] . '&action=edit'), null, 'warning', null, null, null, false); ?>
-                      </div>
+    echo '                      <div class="btn-group">' . tep_glyphicon_button(IMAGE_ICON_INFO, 'info-sign', tep_href_link(FILENAME_CONFIGURATION, 'gID=' . $HTTP_GET_VARS['gID'] . '&cID=' . $configuration['configuration_id'] . '&action=info'), null, 'info') . '</div>' . "\n" . 
+         '                      <div class="btn-group">' . tep_glyphicon_button(IMAGE_EDIT, 'pencil', tep_href_link(FILENAME_CONFIGURATION, 'gID=' . $HTTP_GET_VARS['gID'] . '&cID=' . $configuration['configuration_id'] . '&action=edit'), null, 'warning') . '</div>' . "\n";
+?>
                     </div>
                   </td>
                 </tr>
@@ -110,12 +109,12 @@
 	  
           $contents = '';
           $contents .= '                      ' . tep_draw_form('configuration', FILENAME_CONFIGURATION, 'gID=' . $HTTP_GET_VARS['gID'] . '&cID=' . $cInfo->configuration_id . '&action=save') . "\n";
-          $contents .= '                        <div class="col-xs-8 col-sm-8 col-md-8">' . "\n";
+          $contents .= '                        <div class="col-xs-12 col-sm-8 col-md-8">' . "\n";
           $contents .= '                          <p>' . $cInfo->configuration_description . '</p>' . "\n";
           $contents .= '                          ' . $value_field . "\n";
           $contents .= '                        </div>' . "\n";
-          $contents .= '                        <div class="col-xs-4 col-sm-4 col-md-4 text-right">' . "\n";
-          $contents .= '                          <div class="btn-group-vertical">' . tep_draw_bs_button(IMAGE_SAVE, 'ok', null) . tep_draw_bs_button(IMAGE_CANCEL, 'remove', tep_href_link(FILENAME_CONFIGURATION, 'gID=' . $HTTP_GET_VARS['gID'] . '&cID=' . $cInfo->configuration_id)) . '</div>' . "\n";
+          $contents .= '                        <div class="col-xs-12 col-sm-4 col-md-4 text-right">' . "\n";
+          $contents .= '                          ' . tep_draw_bs_button(IMAGE_SAVE, 'ok', null) . '<br>' . tep_draw_bs_button(IMAGE_CANCEL, 'remove', tep_href_link(FILENAME_CONFIGURATION, 'gID=' . $HTTP_GET_VARS['gID'] . '&cID=' . $cInfo->configuration_id), null, null, 'btn-default text-danger') . "\n";
           $contents .= '                        </div>' . "\n";
           $contents .= '                      </form>' . "\n";
         break;
@@ -126,12 +125,25 @@
             $contents .= '                      <div class="col-xs-12 col-sm-8 col-md-8">' . "\n";      
             $contents .= '                        <p>' . $cInfo->configuration_description . '</p>' . "\n"; 
             $contents .= '                      </div>' . "\n";
-            $contents .= '                      <div class="col-xs-12 col-sm-4 col-md-4 text-right">' . "\n";		
-            $contents .= '                        <span class="label label-info">' . TEXT_INFO_DATE_ADDED . ' ' . tep_date_short($cInfo->date_added) . '</span>' . "\n";
-		
-            if (tep_not_null($cInfo->last_modified)) $contents .= '                        <span class="label label-info">' . TEXT_INFO_LAST_MODIFIED . ' ' . tep_date_short($cInfo->last_modified) . '</span>' . "\n";
-		
-            $contents .= '                      </div>' . "\n";
+            $contents .= '                      <div class="col-xs-12 col-sm-4 col-md-4">' . "\n";
+			
+			$contents .= '                        <ul class="list-group">' . "\n";
+			$contents .= '                          <li class="list-group-item">' . "\n";
+			$contents .= '                            <span class="badge badge-info">' . tep_date_short($cInfo->date_added) . '</span>' . "\n";			
+			$contents .= '                              ' . TEXT_INFO_DATE_ADDED . "\n";
+			
+			$contents .= '                          </li>' . "\n";
+			
+            if (tep_not_null($cInfo->last_modified)) {
+		      $contents .= '                          <li class="list-group-item">' . "\n";
+			  $contents .= '                            <span class="badge badge-info">' . tep_date_short($cInfo->last_modified) . '</span>' . "\n";			
+			  $contents .= '                              ' . TEXT_INFO_LAST_MODIFIED . "\n";
+			  $contents .= '                          </li>' . "\n";					
+			}
+			
+			$contents .= '                        </ul>' . "\n";
+            
+			$contents .= '                      </div>' . "\n";
           }
         break;
       }	

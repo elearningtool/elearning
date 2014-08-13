@@ -9,7 +9,6 @@
 
   Released under the GNU General Public License
 */
-
   if (tep_session_is_registered('admin')) {
     $cl_box_groups = array();
 

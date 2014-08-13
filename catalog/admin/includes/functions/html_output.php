@@ -88,7 +88,7 @@
 
 ////
 // The HTML image wrapper function
-// added bootstrap classes
+// added bootstrap classes for responsivness with ability to set class to false
   function tep_image($src, $alt = '', $width = '', $height = '', $parameters = '', $responsive = true, $bootstrap_css = '') {
     $image = '<img src="' . tep_output_string($src) . '" alt="' . tep_output_string($alt) . '"';
 
@@ -205,6 +205,7 @@
 
 ////
 // Output a form input field
+// ripped from the catalog side for bootstrap changes
   function tep_draw_input_field($name, $value = '', $parameters = '', $type = 'text', $reinsert_value = true, $class = 'class="form-control"') {
     global $HTTP_GET_VARS, $HTTP_POST_VARS;
 
@@ -233,17 +234,21 @@
 
 ////
 // Output a form password field
+// slightly modified to go with the new input_field changes
   function tep_draw_password_field($name, $value = '', $parameters = '') {
     return tep_draw_input_field($name, $value, $parameters, 'password', false);
   }
 
-////
 // Output a form filefield
-  function tep_draw_file_field($name, $required = false) {
-    return tep_draw_input_field($name, '', '', $required, 'file');
-
+// Also modified to go with the new input_field changes plus added some markup to apply a nice Bootstrap button style
+  function tep_draw_file_field($name, $value = '', $parameters = '') {
+	$field =  '<div class="file-wrapper">';
+    $field .=  tep_draw_input_field($name, $value, '', 'file');
+	$field .= '<span class="btn btn-default btn-sm">' . tep_glyphicon('floppy-open') . TEXT_BROWSE . '</span>';
+    $field .= '</div>';
+    return $field;
   }
-
+  
 ////
 // Output a selection field - alias function for tep_draw_checkbox_field() and tep_draw_radio_field()
   function tep_draw_selection_field($name, $type, $value = '', $checked = false, $compare = '') {
@@ -277,6 +282,7 @@
 ////
 // Output a form textarea field
 // The $wrap parameter is no longer used in the core xhtml template
+// added form-control class for use with bootstrap
   function tep_draw_textarea_field($name, $wrap, $width, $height, $text = '', $parameters = '', $reinsert_value = true) {
     global $HTTP_GET_VARS, $HTTP_POST_VARS;
 
@@ -339,7 +345,7 @@
 
 ////
 // Output a form pull down menu
-// added BS & select picker classes
+// added Bootstrap & select picker classes
   function tep_draw_pull_down_menu($name, $values, $default = '', $parameters = '', $required = false) {
     global $HTTP_GET_VARS, $HTTP_POST_VARS;
 
@@ -473,7 +479,8 @@ References: admin/ext/stylesheet.css - Bootsrap Glyphicon helpers section
   
 ////
 // Output a Bootstrap Button
-  function tep_draw_bs_button($title = null, $icon = null, $link = null, $priority = null, $params = null, $style = null, $size = null) {
+// took from the bootstrapped catalog side and removed priority and added parameters
+  function tep_draw_bs_button($title = null, $icon = null, $link = null, $parameters = null, $params = null, $style = null) {
     static $button_counter = 1;
 
     $types = array('submit', 'button', 'reset');
@@ -488,10 +495,6 @@ References: admin/ext/stylesheet.css - Bootsrap Glyphicon helpers section
 
     if ( ($params['type'] == 'submit') && isset($link) ) {
       $params['type'] = 'button';
-    }
-
-    if (!isset($priority)) {
-      $priority = 'secondary';
     }
 
     $button = NULL;
@@ -514,10 +517,12 @@ References: admin/ext/stylesheet.css - Bootsrap Glyphicon helpers section
     $button .= ' class="btn ';
 
     $button .= (isset($style)) ? $style : 'btn-default';
-	
-	$button .= (isset($size)) ? ' ' . $size : ' btn-sm';
 
-    $button .= '">';
+    $button .= '"';
+	
+	$button .= (isset($parameters)) ?  ' ' . $parameters : '';
+	
+	$button .= '>';
 
     if (isset($icon) && tep_not_null($icon)) {
       $button .=  tep_glyphicon($icon);
@@ -537,6 +542,7 @@ References: admin/ext/stylesheet.css - Bootsrap Glyphicon helpers section
   } 
 ////
 // review stars
+// took from the bootstraped catalog 
   function tep_draw_stars($rating = 0) {
     $stars =  str_repeat(tep_glyphicon('star','info'), (int)$rating);
     $stars .= str_repeat(tep_glyphicon('star-empty','muted'), 5-(int)$rating);
@@ -545,48 +551,40 @@ References: admin/ext/stylesheet.css - Bootsrap Glyphicon helpers section
   }
   
 ////
-// Output a Bootstrap Glyphicon Button with tool tip!
-  function tep_glyphicon_button($title = null, $icon = null, $link = null, $style = null, $color = null, $size = null, $parameters = null, $posistion = null, $tooltip = true) {
+// Output a Bootstrap Glyphicon Button
+  function tep_glyphicon_button($title = null, $icon = null, $link = null, $style = null, $color = null, $size = null, $parameters = null) {
 
-    $button = '';
+    $glyphbtn = '';
 
     if (isset($link) ) {
-      $button .= '<a role="button" href="' . $link . '"';
+      $glyphbtn .= '<a role="button" href="' . $link . '"';
 	  
     } else {
-      $button .= '<button ';
-      $button .= ' type="button"';
+      $glyphbtn .= '<button type="button"';
     }
 
-    $button .= ' class="btn ';
+    $glyphbtn .= ' class="btn-glyphicon btn ';
     
-    $button .= (isset($style)) ? $style : 'btn-default ';
+    $glyphbtn .= (isset($style)) ? $style : 'btn-default ';
 	
-	$button .= (isset($size)) ? $size : '';
+	$glyphbtn .= (isset($size)) ? $size : '';
 
-    $button .= '"';
+    $glyphbtn .= '"';
 	
-	if (tep_not_null($parameters)) $button .= ' ' . $parameters;
+	if (tep_not_null($parameters)) $glyphbtn .= ' ' . $parameters;
 	
-	if ($tooltip === true) {
-	  $button .= ' data-toggle="tooltip"';
-	  $button .= ' data-placement="'. ( (isset($posistion)) ? $posistion : 'top') .'"';
-	}
+	$glyphbtn .= ' title="' . $title . '"';
 	
-	$button .= ' title="' . $title . '"';
-	
-	$button .= '>';
+	$glyphbtn .= '>';
 
     if (isset($icon) && tep_not_null($icon)) {
-      $button .=  str_replace('&nbsp;', '', tep_glyphicon($icon,(isset($color)) ? $color : ''));
+      $glyphbtn .=  str_replace('&nbsp;', '', tep_glyphicon($icon,(isset($color)) ? $color : ''));
     }
     if (isset($link) ) {
-      $button .= '</a>';
+      $glyphbtn .= '</a>';
     } else {
-      $button .= '</button>';
+      $glyphbtn .= '</button>';
     }
-    return $button;
+    return $glyphbtn;
   }
- 
-  
 ?>

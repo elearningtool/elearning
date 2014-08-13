@@ -21,8 +21,8 @@
 <base href="<?php echo ($request_type == 'SSL') ? HTTPS_SERVER . DIR_WS_HTTPS_ADMIN : HTTP_SERVER . DIR_WS_ADMIN; ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo tep_catalog_href_link('ext/bootstrap/css/bootstrap.min.css', '', 'SSL'); ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo tep_catalog_href_link('ext/bootstrap-select/bootstrap-select.min.css', '', 'SSL'); ?>">
+<link rel="stylesheet" type="text/css" href="ext/ui/css/jquery-ui-1.10.4.css">
 <link rel="stylesheet" type="text/css" href="ext/stylesheet.css">
-<!--[if IE]><script type="text/javascript" src="<?php echo tep_catalog_href_link('ext/flot/excanvas.min.js', '', 'SSL'); ?>"></script><![endif]-->
 <!--[if lt IE 9]>
   <script type="text/javascript" src="<?php echo tep_catalog_href_link('ext/js/html5shiv.js', '', 'SSL'); ?>/ext/html5shiv.js"></script>
   <script type="text/javascript" src="<?php echo tep_catalog_href_link('ext/js/respond.min.js', '', 'SSL'); ?>"></script>
@@ -31,7 +31,8 @@
 <script type="text/javascript" src="<?php echo tep_catalog_href_link('ext/jquery/jquery-1.11.1.min.js', '', 'SSL'); ?>"></script>
 <script type="text/javascript" src="<?php echo tep_catalog_href_link('ext/bootstrap/js/bootstrap.min.js', '', 'SSL'); ?>"></script>
 <script type="text/javascript" src="<?php echo tep_catalog_href_link('ext/bootstrap-select/bootstrap-select.min.js', '', 'SSL'); ?>"></script>
-<script type="text/javascript" src="<?php echo tep_catalog_href_link('ext/bootstrap-select/bootstrap-select.min.js', '', 'SSL'); ?>"></script>
+<script type="text/javascript" src="<?php echo tep_catalog_href_link('ext/jquery/ui/jquery-ui-1.10.4.min.js', '', 'SSL'); ?>"></script>
+
 <?php
   if (tep_not_null(JQUERY_DATEPICKER_I18N_CODE)) {
 ?>
@@ -40,10 +41,16 @@
 $.datepicker.setDefaults($.datepicker.regional['<?php echo JQUERY_DATEPICKER_I18N_CODE; ?>']);
 </script>
 <?php
-  }
+  } 
+  if (strpos($_SERVER['PHP_SELF'],'index.php')) 
+  {
 ?>
+<!--[if IE]><script type="text/javascript" src="<?php echo tep_catalog_href_link('ext/flot/excanvas.min.js', '', 'SSL'); ?>"></script><![endif]-->
 <script type="text/javascript" src="<?php echo tep_catalog_href_link('ext/flot/jquery.flot.min.js', '', 'SSL'); ?>"></script>
 <script type="text/javascript" src="<?php echo tep_catalog_href_link('ext/flot/jquery.flot.time.min.js', '', 'SSL'); ?>"></script>
+<?php 
+  }
+?>
 <script type="text/javascript" src="includes/general.js"></script>
 </head>
 <body>
@@ -73,7 +80,8 @@ box-shadow:none;
   }
 ?>
 
-        <div id="bodyContent" class="col-xs-12 <?php echo (tep_session_is_registered('admin') ? 'col-sm-9 col-md-10 equal' : 'col-sm-8 col-md-8 col-md-offset-2 col-sm-offset-2'); ?> content-canvas">		
+        <div id="bodyContent" class="col-xs-12 <?php echo (tep_session_is_registered('admin') ? 'col-sm-9 col-md-10 equal' : 'col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3'); ?> content-canvas">
+        		
 <?php
   if ($messageStack->size > 0) {
     echo $messageStack->output();

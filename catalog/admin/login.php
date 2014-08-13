@@ -5,7 +5,7 @@
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
 
-  Copyright (c) 2013 osCommerce
+  Copyright (c) 2014 osCommerce
 
   Released under the GNU General Public License
 */
@@ -133,49 +133,37 @@
 
   require(DIR_WS_INCLUDES . 'template_top.php');
 ?>
-
-
-
-<?php
-  if (sizeof($languages_array) > 1) {
-?>
-
-        <?php echo tep_draw_form('adminlanguage', FILENAME_DEFAULT, '', 'get') . tep_draw_pull_down_menu('language', $languages_array, $languages_selected, 'onchange="this.form.submit();"') . tep_hide_session_id() . '</form>'; ?>
-
-<?php
-  }
-?>
-
-  <div id="login" class="container-fluid" style="margin-top:12%">
-    <div class="page-header">
-      <h1 class="col-md-8" style="padding-top:0"><?php echo HEADING_TITLE; ?></h1>
+          <div id="login" class="container-fluid" style="margin-top:12%">
+            <div class="page-header">
+              <h1 class="col-md-8" style="padding-top:0"><?php echo HEADING_TITLE; ?></h1>
 
 <?php
   if (sizeof($languages_array) > 1) {
 ?>
 
-        <div class="col-md-4"><?php echo tep_draw_form('adminlanguage', FILENAME_DEFAULT) . tep_draw_pull_down_menu('language', $languages_array, $languages_selected, 'onchange="this.form.submit();"') . tep_hide_session_id() . '</form>'; ?></div>
+                <?php echo tep_draw_form('adminlanguage', FILENAME_DEFAULT, '', 'get', 'class="col-md-4"') . tep_draw_pull_down_menu('language', $languages_array, $languages_selected, 'onchange="this.form.submit();"') . tep_hide_session_id() . '</form>'; ?>
 
 <?php
   }
 ?>
-      <div class="clearfix"></div>
-    </div>
-    <?php echo tep_draw_form('login', FILENAME_LOGIN, ((tep_db_num_rows($admins_check_query) > 0) ? 'action=process' : 'action=create')); ?>
+              <div class="clearfix"></div>
+            </div>
+<?php
+  echo '            '. tep_draw_form('login', FILENAME_LOGIN, ((tep_db_num_rows($admins_check_query) > 0) ? 'action=process' : 'action=create')); ?>
 
-      <div class="form-group">
-        <?php echo tep_draw_input_field('username', NULL, 'autofocus="autofocus" placeholder="' . TEXT_USERNAME . '"'); ?>
-      </div>
-        
-      <div class="input-group">
-        <?php echo tep_draw_password_field('password', NULL, 'placeholder="' . TEXT_PASSWORD . '"'); ?>
-        <span class="input-group-btn">
-          <?php echo tep_draw_bs_button(((tep_db_num_rows($admins_check_query) > 0) ? BUTTON_LOGIN : BUTTON_CREATE_ADMINISTRATOR), 'log-in', null, null, null, null, ''); ?>
-        </span>
-      </div>
-    </form>
-  </div>
-
+              <div class="form-group">
+                <label class="sr-only" for="username">TEXT_USERNAME</label>
+                <?php echo tep_draw_input_field('username', NULL, 'autofocus="autofocus" placeholder="' . TEXT_USERNAME . '"'); ?>
+              </div>
+              <div class="input-group">
+                <label class="sr-only" for="password">TEXT_PASSWORD</label>
+                <?php echo tep_draw_password_field('password', NULL, 'placeholder="' . TEXT_PASSWORD . '"'); ?>
+                <span class="input-group-btn">
+                  <?php echo tep_draw_bs_button(((tep_db_num_rows($admins_check_query) > 0) ? BUTTON_LOGIN : BUTTON_CREATE_ADMINISTRATOR), 'log-in'); ?>
+                </span>
+              </div>
+            </form>
+          </div>
 <?php
   require(DIR_WS_INCLUDES . 'template_bottom.php');
   require(DIR_WS_INCLUDES . 'application_bottom.php');

@@ -21,7 +21,9 @@
 ?>
   
   </div><!-- bodyWrapper -->
-      
+<?php
+  if (tep_session_is_registered('admin')) {
+?>      
 <script>
 $(document).ready(function() {
 
@@ -38,6 +40,29 @@ $(document).ready(function() {
   $('[data-toggle=collapse]').click(function() {
     $(this).find('.click').toggleClass('clickopen clickclose');
   });
+  
+  $('.file-wrapper input[type=file]').bind('change focus click', fileinputbtn.fileInputs);
+  
+});
+var fileinputbtn = fileinputbtn || {};
+fileinputbtn.fileInputs = function() {
+//SITE.fileInputs = function() {
+var $this = $(this),
+$val = $this.val(),
+valArray = $val.split('\\'),
+newVal = valArray[valArray.length-1],
+$button = $this.siblings('.btn'),
+$fakeFile = $this.siblings('.file-holder');
+if(newVal !== '') { 
+$button.text('<?php echo TEXT_BROWSE_DONE; ?>');
+if($fakeFile.length === 0) {
+$button.after('<br><span class="label label-info file-holder">' + newVal + '</span>');
+} else {
+$fakeFile.text(newVal);
+}
+}
+};
+
 
   equalheight = function(container) {
 
@@ -81,8 +106,9 @@ $(document).ready(function() {
   $(window).scroll(function() {
     equalheight('.row-offcanvas .equal');
   });
-
-});
 </script> 
+<?php 
+  } 
+?>
 </body>
 </html>
