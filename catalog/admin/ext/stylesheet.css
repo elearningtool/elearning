@@ -536,9 +536,9 @@ width:100%;
 .table tbody tr.active td, .table tbody tr.active th {
 	background-color: #eee !important;
 }
-.table tbody tr.active:hover td, .table tbody tr.active:hover th {
+/* .table tbody tr.active:hover td, .table tbody tr.active:hover th {
 	background-color: #e1e1e1 !important;
-}
+} */
 .table-striped tbody tr.active:nth-child(odd) td, .table-striped tbody tr.active:nth-child(odd) th {
 	background-color: #017ebc;
 }
@@ -575,6 +575,12 @@ width:100%;
 	background: rgb(251, 253, 249) !important;
 	-webkit-box-shadow: 0 1px 0 #fff;
 	box-shadow: 0 1px 0 #fff;
+}
+
+.download-row, .download-row th, .download-row tr, .download-row td {
+  padding: 1px;
+  text-shadow: none;
+  background-color: rgba(66, 139, 202, .25) !important;
 }
 .table-hover > tbody > tr > td.heading-row:hover, .table-hover > tbody > tr > th.heading-row:hover, .table-hover > tbody > tr.heading-row:hover > td, .table-hover > tbody > tr:hover > .heading-row, .table-hover > tbody > tr.heading-row:hover > th, .table-hover > tbody > tr > td.content-row:hover, .table-hover > tbody > tr > th.content-row:hover, .table-hover > tbody > tr.content-row:hover > td, .table-hover > tbody > tr:hover > .content-row, .table-hover > tbody > tr.content-row:hover > th {
 	background: none !important;
@@ -613,6 +619,7 @@ width:100%;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
+
 .btn-default {
 	color: #428bca !important;
 	background: none;
@@ -631,6 +638,7 @@ width:100%;
 	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
 	box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;	
 }
+
 .btn-default:hover, .btn-default:focus {
 	background: rgb(246, 246, 246);
 	border-color: rgb(221, 221, 221);
@@ -648,6 +656,7 @@ width:100%;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
+
 .selectpicker.btn {
     font-size: 14px;
     line-height: 1.42857143;
@@ -705,6 +714,20 @@ padding: 14% 17% 11%;
     -webkit-box-shadow: none;
 	  box-shadow: none;	
 }
+
+.content-row .bootstrap-select, .content-row .selectpicker.btn, .content-row input[type="text"], .content-row .input-group-addon {
+  height: 28px;
+}
+
+.download-row .bootstrap-select, .download-row .selectpicker.btn, .download-row input[type="text"], .download-row .input-group-addon {
+  height: 28px;
+}
+.download-row .input-group-addon, .download-row input[type="text"] {
+  font-size: 9pt;
+  padding: 5px 10px;
+  margin-top: 0;
+}
+ 
 .content-row .btn {
   padding-left: 8px;
   text-align: left;	
@@ -715,19 +738,22 @@ padding: 14% 17% 11%;
 .content-row .btn-default {
   color: #428bca !important;
 }
-
-.content-row .selectpicker.btn {
+.content-row .selectpicker.btn, .content-row .input-group-addon, .content-row input[type="text"] {
   font-size: 9pt;
   padding: 5px 10px;
+  margin-top: 0;
+}
+.content-row .selectpicker.btn {  
   text-align: left;	
   margin-top: -1px;
   min-width:100%;
-  max-width: 100%;
+  max-width:100%;
 }
 .content-row .btn-group.bootstrap-select.form-control {
   min-width: 75%;
   max-width: 75%;
 }
+
 
 td .btn-toolbar {
   margin-right: 0;
@@ -904,14 +930,25 @@ td .label .badge {
 /* ##############################################################################
 # Pagination                                                                    #
 # #############################################################################*/
-#pg-group .dropdown-menu {
-	min-width: 20% !important;
-	left: 30%;
-	right: 30%;
+.splitPageLink {
+float:inherit;
+display:block;
 }
-.pg-rgt {
-	border-left: none;
+.splitPageLink .selectpicker, .splitPageLink select, .splitPageLink .bootstrap-select {
+width:48px !important;	
+border-left:none;
 }
+.splitPageLink .btn {
+    font-size: 10pt;
+	padding:3px 6px;
+}
+.splitPageLink  a, .splitPageLink  select  {
+	color:#93B9D8 !important;
+}
+.splitPageLink .selectpicker.btn-default {
+	color: #93B9D8 !important;
+}
+
 /* ##############################################################################
 # Login  Page                                                                   #
 # #############################################################################*/
@@ -922,7 +959,7 @@ td .label .badge {
 	background-image: none;
 	background-image: -webkit-linear-gradient(top, rgb(238,238,238) 0%, rgb(204,204,204) 100%);
 	background-image: linear-gradient(to bottom, rgb(238,238,238) 0%, rgb(204,204,204) 100%);
- filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc', GradientType=0 );
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc', GradientType=0 );
 	background-repeat: repeat-x;
 	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 1) inset;
 	box-shadow: 0 1px 0 rgba(255, 255, 255, 1) inset;
@@ -1017,5 +1054,3 @@ top: 0;
 .file-holder {
 	line-height:2.5em;
 }
-
-

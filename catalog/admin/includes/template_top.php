@@ -21,7 +21,7 @@
 <base href="<?php echo ($request_type == 'SSL') ? HTTPS_SERVER . DIR_WS_HTTPS_ADMIN : HTTP_SERVER . DIR_WS_ADMIN; ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo tep_catalog_href_link('ext/bootstrap/css/bootstrap.min.css', '', 'SSL'); ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo tep_catalog_href_link('ext/bootstrap-select/bootstrap-select.min.css', '', 'SSL'); ?>">
-<link rel="stylesheet" type="text/css" href="ext/ui/css/jquery-ui-1.10.4.css">
+<link rel="stylesheet" type="text/css" href="<?php echo tep_catalog_href_link('ext/jquery/ui/redmond/jquery-ui-1.10.4.min.css', '', 'SSL'); ?>">
 <link rel="stylesheet" type="text/css" href="ext/stylesheet.css">
 <!--[if lt IE 9]>
   <script type="text/javascript" src="<?php echo tep_catalog_href_link('ext/js/html5shiv.js', '', 'SSL'); ?>/ext/html5shiv.js"></script>
@@ -31,6 +31,7 @@
 <script type="text/javascript" src="<?php echo tep_catalog_href_link('ext/jquery/jquery-1.11.1.min.js', '', 'SSL'); ?>"></script>
 <script type="text/javascript" src="<?php echo tep_catalog_href_link('ext/bootstrap/js/bootstrap.min.js', '', 'SSL'); ?>"></script>
 <script type="text/javascript" src="<?php echo tep_catalog_href_link('ext/bootstrap-select/bootstrap-select.min.js', '', 'SSL'); ?>"></script>
+
 <script type="text/javascript" src="<?php echo tep_catalog_href_link('ext/jquery/ui/jquery-ui-1.10.4.min.js', '', 'SSL'); ?>"></script>
 
 <?php

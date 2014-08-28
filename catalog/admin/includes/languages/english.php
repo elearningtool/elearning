@@ -258,7 +258,7 @@ define('ICON_UNLOCKED', 'Unlocked');
 define('ICON_WARNING', 'Warning');
 
 // constants for use in tep_prev_next_display function
-define('TEXT_RESULT_PAGE', 'Page %s of %d');
+define('TEXT_RESULT_PAGE', '<small>Page %s of %d</small>');
 define('TEXT_DISPLAY_NUMBER_OF_BANNERS', 'Displaying <strong>%d</strong> to <strong>%d</strong> (of <strong>%d</strong> banners)');
 define('TEXT_DISPLAY_NUMBER_OF_COUNTRIES', 'Displaying <strong>%d</strong> to <strong>%d</strong> (of <strong>%d</strong> countries)');
 define('TEXT_DISPLAY_NUMBER_OF_CUSTOMERS', 'Displaying <strong>%d</strong> to <strong>%d</strong> (of <strong>%d</strong> customers)');

@@ -52,21 +52,25 @@
       }
 
       if ($num_pages > 1) {
-        $display_links = tep_draw_form('pages', $PHP_SELF, '', 'get');
-
+        $display_links = tep_draw_form('pages', $PHP_SELF, '', 'get', 'class="form-inline"');
+		// $display_links .= sprintf(TEXT_RESULT_PAGE, $current_page_number, $num_pages);
+        $display_links .= '<div class="splitPageLink">';
+		$display_links .= '  <div class="btn-group">';
         if ($current_page_number > 1) {
-          $display_links .= '<a href="' . tep_href_link($PHP_SELF, $parameters . $page_name . '=' . ($current_page_number - 1)) . '" class="splitPageLink">' . PREVNEXT_BUTTON_PREV . '</a>&nbsp;&nbsp;';
+		  $display_links .= tep_glyphicon_button(PREVNEXT_BUTTON_PREV, 'chevron-left', tep_href_link($PHP_SELF, $parameters . $page_name . '=' . ($current_page_number - 1)));
         } else {
-          $display_links .= PREVNEXT_BUTTON_PREV . '&nbsp;&nbsp;';
+		  $display_links .= tep_glyphicon_button(PREVNEXT_BUTTON_PREV, 'chevron-left', null, 'btn-default disabled','muted');
         }
-
-        $display_links .= sprintf(TEXT_RESULT_PAGE, tep_draw_pull_down_menu($page_name, $pages_array, $current_page_number, 'onchange="this.form.submit();"'), $num_pages);
-
-        if (($current_page_number < $num_pages) && ($num_pages != 1)) {
-          $display_links .= '&nbsp;&nbsp;<a href="' . tep_href_link($PHP_SELF, $parameters . $page_name . '=' . ($current_page_number + 1)) . '" class="splitPageLink">' . PREVNEXT_BUTTON_NEXT . '</a>';
+		 $display_links .= tep_draw_pull_down_menu($page_name, $pages_array, $current_page_number, 'onchange="this.form.submit();" class="pull-left selectpicker"');
+         if (($current_page_number < $num_pages) && ($num_pages != 1)) {
+		   $display_links .= tep_glyphicon_button(PREVNEXT_BUTTON_NEXT, 'chevron-right', tep_href_link($PHP_SELF, $parameters . $page_name . '=' . ($current_page_number + 1)) );
         } else {
-          $display_links .= '&nbsp;&nbsp;' . PREVNEXT_BUTTON_NEXT;
+           $display_links .= tep_glyphicon_button(PREVNEXT_BUTTON_PREV, 'chevron-right', null, 'btn-default disabled','muted');
         }
+	 
+		 $display_links .= '  </div>';
+		
+		 $display_links .= '</div>';
 
         if ($parameters != '') {
           if (substr($parameters, -1) == '&') $parameters = substr($parameters, 0, -1);

@@ -511,8 +511,7 @@ function updateNet() {
 	  $tabcontent .= '                        <label>' . TEXT_PRODUCTS_NAME . '</label>' . "\n";
 	  $tabcontent .= '                        ' . tep_draw_input_field('products_name[' . $languages[$i]['id'] . ']', (empty($pInfo->products_id) ? '' : tep_get_products_name($pInfo->products_id, $languages[$i]['id']))) . "\n";
 	  
-	  
-      $tabcontent .= '                        <label>' . TEXT_PRODUCTS_DESCRIPTION . '</label>' . "\n";
+	  $tabcontent .= '                        <label>' . TEXT_PRODUCTS_DESCRIPTION . '</label>' . "\n";
 	  $tabcontent .= '                        ' . tep_draw_textarea_field('products_description[' . $languages[$i]['id'] . ']', 'soft', '70', '15', (empty($pInfo->products_id) ? '' : tep_get_products_description($pInfo->products_id, $languages[$i]['id']))) . "\n";
 	  
 	   $tabcontent .= '                        <label>' . TEXT_PRODUCTS_URL . ' <small>' . TEXT_PRODUCTS_URL_WITHOUT_HTTP . '</small></label>' . "\n";
@@ -810,7 +809,7 @@ $('#products_date_available').datepicker({
           
           <div class="panel panel-default">        
   
-            <table class="table table-hover table-condensed table-striped">
+            <table class="table table-condensed table-striped">
               <thead>
                 <tr class="heading-row">
                   <th><?php echo TABLE_HEADING_CATEGORIES_PRODUCTS; ?></th>

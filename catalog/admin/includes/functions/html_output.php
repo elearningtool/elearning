@@ -546,7 +546,6 @@ References: admin/ext/stylesheet.css - Bootsrap Glyphicon helpers section
   function tep_draw_stars($rating = 0) {
     $stars =  str_repeat(tep_glyphicon('star','info'), (int)$rating);
     $stars .= str_repeat(tep_glyphicon('star-empty','muted'), 5-(int)$rating);
-
     return $stars;
   }
   
